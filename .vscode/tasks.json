@@ -1,0 +1,62 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Frontend: dev server",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev", "--", "--host", "127.0.0.1"],
+      "options": {
+        "cwd": "${workspaceFolder}\\frontend"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "base": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "vite",
+          "endsPattern": "http://127.0.0.1:5173"
+        }
+      },
+      "group": "build"
+    },
+    {
+      "label": "AI service: dev server",
+      "type": "shell",
+      "command": "${workspaceFolder}\\ai-service\\.venv\\Scripts\\python.exe",
+      "args": ["-m", "uvicorn", "app.main:app", "--reload", "--port", "8001"],
+      "options": {
+        "cwd": "${workspaceFolder}\\ai-service"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "base": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Uvicorn running",
+          "endsPattern": "Application startup complete"
+        }
+      }
+    },
+    {
+      "label": "Frontend: production build",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "options": {
+        "cwd": "${workspaceFolder}\\frontend"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "AI service: tests",
+      "type": "shell",
+      "command": "${workspaceFolder}\\ai-service\\.venv\\Scripts\\python.exe",
+      "args": ["-m", "unittest", "discover", "-s", "tests", "-v"],
+      "options": {
+        "cwd": "${workspaceFolder}\\ai-service"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

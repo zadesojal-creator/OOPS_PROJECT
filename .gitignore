@@ -1,0 +1,13 @@
+**/node_modules/
+**/dist/
+**/.venv/
+**/build/
+**/__pycache__/
+*.py[cod]
+.env
+**/.env
+**/*service-account*.json
+backend/storage/prescriptions/*.pdf
+integration/storage/prescriptions/*.pdf
+*.pdb
+*.log
